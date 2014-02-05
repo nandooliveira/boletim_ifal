@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# >>> boletim_ifal.py  - 04/02/2014
+# Fernando Oliveira >>> boletim_ifal.py  - 04/02/2014
 
 # Instalação do mechanize - sudo pip install mechanize
 # Instalação do texttable - sudo pip install texttable
@@ -18,7 +18,7 @@ current_year = date.today().year
 br = mechanize.Browser()
 url = 'http://boletim.ifal.edu.br/' 
 matricula = raw_input('Informe a sua matricula [20121T1104002T6]: ') or '20121T1104002T6' 
-ano = raw_input('Informe o ano que deseja consultar [%s]: ' % current_year) or '2013' 
+ano = raw_input('Informe o ano que deseja consultar [%s]: ' % current_year) or current_year
 
 # Prepara para tratar cookies...
 cj = cookielib.LWPCookieJar()
@@ -89,16 +89,7 @@ for disciplina in dictHtml[1:]:
 	listaNotas.append(disciplina[:-1])
 
 table = Texttable()
-table.set_cols_dtype(['t',  # text 
-                      't',  # float (decimal)
-                      'f',  # float (exponent)
-                      'f',  # integer
-                      'f',
-		      'f',
-		      'f',
-		      'i',
-		      't']) # automatic
-
+table.set_cols_dtype(['t', 't', 'f', 'f', 'f', 'f', 'f', 'i', 't']) 
 table.set_cols_width([40,10,10,10,10,10,10,10,10])
 
 table.add_rows(listaNotas)
